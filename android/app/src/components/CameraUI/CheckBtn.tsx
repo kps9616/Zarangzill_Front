@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 40,
         height: 30,
-        borderRadius: 10,
+        borderRadius: 10, // React Native에서는 퍼센트를 사용할 수 없기 때문에, 100%는 width/height의 절반으로 표현됩니다.
     },
     vRecCheckOn: {
         color: '#151515',

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 40,
         height: 40,
-        borderRadius: 30,
+        borderRadius: 30, // 100%는 width/height의 절반으로 표현됩니다.
     },
 });
 

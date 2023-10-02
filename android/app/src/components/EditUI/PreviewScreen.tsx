@@ -1,44 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useCameraUI } from '../../contexts/CameraUIContext';
-import { Alert, View, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { Alert, View } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import Video from 'react-native-video';
+import { Text } from 'react-native-svg';
 import PreviewDelBtn from './PreviewDelBtn';
-import { VESDK } from "react-native-videoeditorsdk";
+
+
 
 const PreviewScreen = () => {
-    const { videoPath, isPreview } = useCameraUI();
+    const { videoPath } = useCameraUI(); // 녹화된 비디오의 경로를 저장하는 상태입니다.
+    const { isPreview } = useCameraUI(); // 비디오 미리보기 모드인지 여부를 나타내는 상태입니다.
 
-    // 비디오를 편집기로 불러오는 함수
-    const openVideoEditor = async () => {
-        if (!videoPath) return; // 비디오 경로가 없으면 함수 종료
-
-        try {
-            const result = await VESDK.openEditor({ uri: videoPath });
-
-            // 편집된 비디오의 결과를 처리하거나 저장하는 로직 추가
-
-        } catch (error) {
-            console.log(error);
-            Alert.alert("Error", "There was an error opening the video editor.");
+    if (isPreview) {
+        if (videoPath) {
+            return (
+                <View style={{ flex: 1 }}>
+                    <Video
+                        source={{ uri: videoPath }}
+                        style={StyleSheet.absoluteFill}
+                        controls={true}
+                        resizeMode="cover"
+                    />
+                    <PreviewDelBtn />
+                </View>
+            );
+        } else {
+            return null;
         }
-    };
 
-    if (isPreview && videoPath) {
-        return (
-            <View style={{ flex: 1 }}>
-                <Video
-                    source={{ uri: videoPath }}
-                    style={StyleSheet.absoluteFill}
-                    controls={true}
-                    resizeMode="cover"
-                />
-                <PreviewDelBtn />
-                <Button title="Edit Video" onPress={openVideoEditor} />
-            </View>
-        );
+    } else {
+        return null;
     }
-
-    return null;
 }
 
+
+
 export default PreviewScreen;
+

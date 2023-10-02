@@ -3,7 +3,7 @@
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"
-        minSdkVersion = 33
+        minSdkVersion = 21
         compileSdkVersion = 33
         targetSdkVersion = 33
 
@@ -13,19 +13,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://artifactory.img.ly/artifactory/imgly" }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
-        classpath 'ly.img.android.sdk:plugin:10.8.1'
-    }
-}
-
-
-allprojects {
-    repositories {
-        maven { url 'https://artifactory.img.ly/artifactory/imgly' }
     }
 }
