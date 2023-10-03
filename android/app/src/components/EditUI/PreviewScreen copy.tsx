@@ -9,8 +9,8 @@ import PreviewDelBtn from './PreviewDelBtn';
 //비디오 에디터 추가 전 프리뷰 스크린 파일입니다. (백업)
 
 const PreviewScreen = () => {
-    const { videoPath } = useCameraUI(); // 녹화된 비디오의 경로
-    const { isPreview } = useCameraUI();
+    const { videoPath } = useCameraUI(); // 녹화된 비디오의 경로를 저장하는 상태입니다.
+    const { isPreview } = useCameraUI(); // 비디오 미리보기 모드인지 여부를 나타내는 상태입니다.
 
     if (isPreview) {
         if (videoPath) {
