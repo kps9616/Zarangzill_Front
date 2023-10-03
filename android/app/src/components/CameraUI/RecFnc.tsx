@@ -54,12 +54,10 @@ const RecFnc: React.FC<RecFncProps> = ({ cameraRef }) => {
     }
 
     toggleRecording();
-    // 첫 렌더링이 아니라는 것을 표시
     isFirstRender.current = false;
 
     return () => {
       iSound?.stop();
-      //클린업함수실행
     };
   }, [isRecording]);
 
