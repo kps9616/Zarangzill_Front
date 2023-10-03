@@ -3,10 +3,10 @@ import { useCameraUI } from '../../contexts/CameraUIContext';
 import { Alert, View, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import Video from 'react-native-video';
 import PreviewDelBtn from './PreviewDelBtn';
-import { VESDK } from "react-native-videoeditorsdk"; // VESDK import
+import { VESDK } from "react-native-videoeditorsdk";
 
 const PreviewScreen = () => {
-    const { videoPath, isPreview } = useCameraUI(); // 두 상태를 한 번에 가져오기
+    const { videoPath, isPreview } = useCameraUI();
 
     // 비디오를 편집기로 불러오는 함수
     const openVideoEditor = async () => {
@@ -15,7 +15,7 @@ const PreviewScreen = () => {
         try {
             const result = await VESDK.openEditor({ uri: videoPath });
 
-            // 편집된 비디오의 결과를 처리하거나 저장하는 로직은 여기에 추가
+            // 편집된 비디오의 결과를 처리하거나 저장하는 로직 추가
 
         } catch (error) {
             console.log(error);

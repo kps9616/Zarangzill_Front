@@ -46,10 +46,10 @@ const RecBtn = () => {
     inputRange: [10, 25],
     outputRange: ['#DE3838', '#FFFFFF']
   });
-  const scaleValue = useRef(new Animated.Value(isRecording ? 1.2 : 1)).current; // Scale Animated Value
+  const scaleValue = useRef(new Animated.Value(isRecording ? 1.2 : 1)).current;
 
   useEffect(() => {
-    Animated.parallel([ // 여러 애니메이션을 동시에 실행
+    Animated.parallel([
       Animated.timing(borderRadiusValue, {
         toValue: isRecording ? 10 : 25,
         duration: 200,
@@ -58,7 +58,7 @@ const RecBtn = () => {
       Animated.timing(scaleValue, {
         toValue: isRecording ? 1.2 : 1, // Scale이 커짐
         duration: 200,
-        useNativeDriver: true, // Scale 변화는 Native Driver를 사용 가능
+        useNativeDriver: true,
       }),
     ]).start();
   }, [isRecording]);

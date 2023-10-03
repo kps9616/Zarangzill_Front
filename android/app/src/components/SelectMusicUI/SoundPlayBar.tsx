@@ -28,7 +28,7 @@ const SoundPlayBar = () => {
         const min = Math.floor(isSoundTime / 60);
         const sec = Math.round(isSoundTime % 60); // 소수점 반올림표시
 
-        return `${min}:${sec < 10 ? '0' : ''}${sec}`; // '0'을 추가하여 초가 한 자리수일 때 '05'와 같이 출력되도록 함
+        return `${min}:${sec < 10 ? '0' : ''}${sec}`; // '0'을 추가하여 초가 한 자리수일 때 '05'와 같이 출력되도록 합니다
     }
 
     return (

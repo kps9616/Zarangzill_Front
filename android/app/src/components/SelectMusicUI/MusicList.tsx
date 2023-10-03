@@ -12,7 +12,7 @@ const MusicList = () => {
     const isModalName = 'PlayTimeSelect';
     const { isSoundName, isSoundSrc, iSound, isSoundTime, setIsSoundName, setIsSoundSrc, setiSound, setIsSoundTime, } = useCameraUI();
 
-
+    //음원 API 연결 전 파일에 임의로 저장한 음악입니다.
     const audioFiles = [
         { id: "1", src: require("/Users/jinnayeong/dev/ZarangRNapp/assets/bgm.mp3"), name: "BGM" },
         { id: "2", src: require('/Users/jinnayeong/dev/ZarangRNapp/assets/PerfectGirl.mp3'), name: "Perfect Girl" },

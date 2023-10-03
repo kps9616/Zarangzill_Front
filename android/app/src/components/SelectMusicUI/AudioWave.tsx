@@ -58,11 +58,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     audioWave: {
-        marginRight: 2, // SVG 요소 간에 1px 간격을 둡니다.
+        marginRight: 2,
     },
     box: {
-        // 3. 사각형 박스의 너비를 설정합니다.
-        height: 50,  // 높이는 임의로 설정하였습니다.
+        height: 50,
         borderColor: 'black',
         borderWidth: 1,
         justifyContent: 'center',
@@ -70,14 +69,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff0',
     },
     timerBox: {
-        borderColor: 'black',  // 테두리 색깔
-        borderWidth: 2,  // 테두리 두께
-        position: 'absolute',  // 절대 위치 지정
+        borderColor: 'black',
+        borderWidth: 2,
+        position: 'absolute',
         alignSelf: 'center',
-        zIndex: 1,  // zIndex 값 설정
-        top: 0,  // 상단에서 0의 위치에 놓습니다.
-        height: 50,  // 부모 높이와 동일하게 합니다.
-        backgroundColor: 'rgba(255, 255, 255, 0.5)'  // 반투명한 배경색
+        zIndex: 1,
+        top: 0,
+        height: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)'
     },
     wrapper: {
         flex: 1,

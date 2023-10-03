@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import PreviewScreen from './PreviewScreen';
 
 const EditUI = () => {

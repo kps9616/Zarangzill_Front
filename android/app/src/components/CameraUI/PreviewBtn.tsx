@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 50,
         height: 50,
-        borderRadius: 30, // React Native에서는 퍼센트를 사용할 수 없기 때문에, 100%는 width/height의 절반으로 표현됩니다.
+        borderRadius: 30,
     },
     vRecCheckOn: {
         color: '#151515',
@@ -31,7 +31,7 @@ const PreviewBtn = () => {
     const navigation = useNavigation();
     const { isPreview, setIsPreview } = useCameraUI();
 
-    const isOn = true; // 이 값은 상태에 따라 결정됩니다.
+    const isOn = true;
     const onPress = () => {
         navigation.navigate('EditUI');
         setIsPreview(!isPreview);

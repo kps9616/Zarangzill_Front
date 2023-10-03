@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#ffffff',
-        fontSize: 13, // 1.2rem을 약 18로 변환, 실제 표시 크기는 디바이스에 따라 다를 수 있음
+        fontSize: 13, // 1.2rem을 약 18로 변환, 디바이스에 따른 사이즈변화 확인하기
     },
 });
 

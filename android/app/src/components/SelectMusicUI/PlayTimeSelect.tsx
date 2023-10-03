@@ -4,7 +4,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import AudioWave from "./AudioWave";
 import CheckBtn from "../CameraUI/CheckBtn";
 import { useCameraUI } from "../../contexts/CameraUIContext";
-import Sound from "react-native-sound";
 import { useNavigation } from '@react-navigation/native';
 import SoundPlayBar from "./SoundPlayBar";
 
@@ -68,10 +67,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     bottomModal: {
-        height: 350,  // 높이는 350으로 지정되어 있습니다.
+        height: 350,
         backgroundColor: '#fefefe',
-        borderTopLeftRadius: 20,  // top-radius 적용
-        borderTopRightRadius: 20, // top-radius 적용
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     header: {
         flexDirection: 'row',

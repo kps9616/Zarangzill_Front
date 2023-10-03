@@ -11,6 +11,7 @@ const UploadIcon = () => (
 const UploadBtn = () => {
     const onPress = () => {
         // 버튼이 클릭되었을 때의 동작을 여기에 작성
+        // 업로드 페이지 작성 후 네비게이션 연결 예정입니다.
     };
 
     return (
@@ -23,7 +24,7 @@ const UploadBtn = () => {
             <UploadIcon />
             <Text style={{
                 color: '#ffffff',
-                fontSize: 13, // 1.2rem을 약 18로 변환
+                fontSize: 13,
                 top: 5,
             }}>업로드</Text>
         </TouchableOpacity>
