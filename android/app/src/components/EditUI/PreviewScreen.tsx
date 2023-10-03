@@ -33,8 +33,7 @@ const PreviewScreen = () => {
                     resizeMode="cover"
                 />
                 <PreviewDelBtn />
-                {/* 편집 버튼 추가 */}
-                <Button title="Edit Video" onPress={openVideoEditor} /> {/* 이 버튼 누르면 편집 UI 로드 */}
+                <Button title="Edit Video" onPress={openVideoEditor} />
             </View>
         );
     }

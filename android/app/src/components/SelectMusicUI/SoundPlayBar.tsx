@@ -34,8 +34,8 @@ const SoundPlayBar = () => {
     return (
         <>
             <View style={{ flexDirection: 'row', position: 'absolute', alignSelf: 'center', bottom: 0 }}>
-                <Text style={{ marginRight: 320 }}>{convertSecondsToMinutes(currentTime)}</Text>
-                <Text>{convertSecondsToMinutes(isSoundTime)}</Text>
+                <Text style={{ marginRight: 320 }}>{String(convertSecondsToMinutes(currentTime))}</Text>
+                <Text>{String(convertSecondsToMinutes(isSoundTime))}</Text>
 
             </View>
             <Slider
