@@ -14,9 +14,9 @@ function HeaderTabNavigationApp() {
             <Tab.Screen
                 name="SearchSf"
                 component={SearchComponent}
-                options={{
-                    headerShown: false,
-                }}
+                //options={{
+               //     headerShown: false,
+                //}}
             />
         </Tab.Navigator>
     );
