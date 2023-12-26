@@ -13,24 +13,28 @@ export default function SharedStack({screenName}: {screenName: 'Shotform' | 'Win
                 <Stack.Screen
                     name={'Home'}
                     component={ShotformView}
+                    options={{headerShown: false}}
                 />
             ) : null}
             {screenName === 'Winner' ? (
                 <Stack.Screen
                     name={'Winner'}
                     component={WinnerView}
+                    options={{headerShown: false}}
                 />
             ) : null}
             {screenName === 'Fans' ? (
                 <Stack.Screen
                     name={'Fans'}
                     component={FansView}
+                    options={{headerShown: false}}
                 />
             ) : null}
             {screenName === 'Mypages' ? (
                 <Stack.Screen
                     name={'Mypages'}
                     component={MypagesView}
+                    options={{headerShown: false}}
                 />
             ) : null}
 
