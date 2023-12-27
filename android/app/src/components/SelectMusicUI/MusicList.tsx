@@ -14,9 +14,10 @@ const MusicList = () => {
 
     //음원 API 연결 전 파일에 임의로 저장한 음악입니다.
     const audioFiles = [
-        { id: "1", src: require("/Users/jinnayeong/dev/ZarangRNapp/assets/bgm.mp3"), name: "BGM" },
-        { id: "2", src: require('/Users/jinnayeong/dev/ZarangRNapp/assets/PerfectGirl.mp3'), name: "Perfect Girl" },
-        { id: "3", src: require('/Users/jinnayeong/dev/ZarangRNapp/assets/Love_You.mp3'), name: "Love You" },
+        { id: "1", src: 'https://jin3s.cafe24.com/assets/bgm.mp3', name: "BGM" },
+        { id: "2", src: 'https://jin3s.cafe24.com/assets/PerfectGirl.mp3', name: "Perfect Girl" },
+        { id: "3", src: 'https://jin3s.cafe24.com/assets/Love_You.mp3', name: "Love You" },
+        { id: "4", src: 'https://jin3s.cafe24.com/assets/blunt.mp3', name: "Blunt" },
     ];
 
     useEffect(() => {
@@ -45,7 +46,7 @@ const MusicList = () => {
 
         setSelectedId(item.id);
 
-        const newSound = new Sound(item.src, (error) => {
+        const newSound = new Sound(item.src, null, (error) => {
             if (error) {
                 Alert.alert('Failed to load the sound', error.message);
                 return;
