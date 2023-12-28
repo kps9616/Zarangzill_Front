@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -12,7 +12,7 @@ import {
     SafeAreaView, Dimensions
 } from "react-native";
 import Video from "react-native-video";
-import {useNavigation} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 //import {Side01Icon, Side02Icon} from "../../styles/icon"
 import Svg, { Path } from "react-native-svg";
 import WebView from "react-native-webview";
@@ -23,13 +23,13 @@ function shotformView() {
 
     const myContext = useContext(AppContext);
 
-    let sourceUri = myContext.stringValue+"/main.html";
-    return(
+    let sourceUri = myContext.stringValue + "/main.html";
+    return (
 
         <SafeAreaView style={styles.container}>
             <WebView
                 style={styles.webview}
-                source={{uri:sourceUri}}
+                source={{ uri: sourceUri }}
             />
         </SafeAreaView>
     )
@@ -55,20 +55,20 @@ const styles = StyleSheet.create({
         right: 0
     },
     search: {
-        position:"absolute",
-        top:16,
-        left:100,
-        width:24,
-        height:24,
-        zIndex:99
+        position: "absolute",
+        top: 16,
+        left: 100,
+        width: 24,
+        height: 24,
+        zIndex: 99
     },
     alarm: {
-        position:"absolute",
-        top:16,
-        left:120,
-        width:24,
-        height:24,
-        zIndex:99
+        position: "absolute",
+        top: 16,
+        left: 120,
+        width: 24,
+        height: 24,
+        zIndex: 99
     },
     judgeBx: {
         display: "flex",
