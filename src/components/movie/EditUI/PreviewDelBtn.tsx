@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useCameraUI } from '../../contexts/CameraUIContext';
+import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';

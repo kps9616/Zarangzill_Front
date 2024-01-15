@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-import CameraUI from "../../../android/app/src/components/CameraUI/CameraUI";
+import CameraUI from "./CameraUI/CameraUI";
 import { createStackNavigator } from "@react-navigation/stack";
-import EditUI from "../../../android/app/src/components/EditUI/EditUI";
-import SelectMusicUI from "../../../android/app/src/components/SelectMusicUI/SelectMusicUI";
+import EditUI from "./EditUI/EditUI";
+import SelectMusicUI from "./SelectMusicUI/SelectMusicUI";
 
 const MovieStack = createStackNavigator();
 

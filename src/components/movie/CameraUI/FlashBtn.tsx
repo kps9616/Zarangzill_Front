@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useCameraUI } from '../../contexts/CameraUIContext'
+import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext'
 
 
 

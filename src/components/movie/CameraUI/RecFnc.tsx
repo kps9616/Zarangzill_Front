@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Alert } from 'react-native';
-import { useCameraUI } from '../../contexts/CameraUIContext';
+import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
 import { Camera } from 'react-native-vision-camera';
 import { useNavigation } from '@react-navigation/native';
 import Sound from 'react-native-sound';

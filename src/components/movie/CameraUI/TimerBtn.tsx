@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import React from 'react';
-import { useCameraUI } from '../../contexts/CameraUIContext';
+import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
 
 const styles = StyleSheet.create({
     back: {
