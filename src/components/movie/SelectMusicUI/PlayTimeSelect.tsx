@@ -39,7 +39,7 @@ const PlayTimeSelect: React.FC<Props> = ({ isModalVisible }) => {
                     <TouchableOpacity style={styles.closeButton}>
                     </TouchableOpacity>
                     <Text style={styles.title}>구간편집</Text>
-                    <TouchableOpacity onPress={goCameraUI}>
+                    <TouchableOpacity onPress={goCameraUI} style={styles.checkBtn}>
                         <CheckBtn />
                     </TouchableOpacity>
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         height: '100%',
-        //backgroundColor: 'rgba(0,0,0,.4)',
+        backgroundColor: 'rgba(0,0,0,.4)',
         justifyContent: 'flex-end',
     },
     bottomModal: {
@@ -93,6 +93,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
+    checkBtn: {
+        position: 'absolute',
+        right: 20, // 오른쪽에 여백을 주어 배치
+        top: 15, // top을 조정하여 정확한 위치에 배치
+    }
 });
 
 export default PlayTimeSelect;

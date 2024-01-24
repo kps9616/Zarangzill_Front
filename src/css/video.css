@@ -1,0 +1,43 @@
+﻿@charset "utf-8";
+.v_container,.v_video{position:relative}
+       .v_top_icons{position:absolute;right:16px}
+       .v_bottom_nav, .v_container{width:100vw;max-width:767px}
+       .v_container{margin:0 auto;height:100vh}
+       .v_video{width:100%;height:100vh}
+       video{width:100%;height:100%;object-fit:cover}
+       .v_video #videoOverlay{position: absolute; top:0;left: 0;width: 100%;height: 100%; background-color: rgba(0,0,0,.05);pointer-events: none;}
+       .v_top_icons{top:16px;z-index: 99;}
+       .v_top_icons a.vticon span{display:inline-block;margin-left:10px;width: 24px; height: 24px; color: #FFF;}
+       .icon-shadow{filter: drop-shadow(0px 1px 1px #2121211a);}
+       .v_side_icons{bottom:8vh; position: fixed; right:16px;}
+       .v_side_icons a.vsicon span{display: block; }
+       .v_side_icons a.vsicon .check_on{opacity: 0.5;}
+       .v_side_icons a.vsicon{font-size: 11px;text-align: center;display:block;margin-bottom:12px; text-decoration: none;color: #FFF;}
+       .v_top_icons a.vticon{position: relative; margin-left: 10px;}       
+       .v_top_icons a.vticon em.circle_bg_blue{padding: 3px; text-align: center; line-height: 10px;font-size: 11px;font-weight: normal !important;text-decoration: none;position: absolute; top: 3px;right: -7px; letter-spacing: -1px;color: #FFF; background-color: rgb(56 127 255 / 65%);border-radius: 50%;}
+       .v_side_icons a.vsicon{position: relative;}
+       .v_side_icons a.vsicon em.new_bg{padding: 0px 3px; text-align: center; line-height: 10px;font-size: 9px;font-weight: normal !important;text-decoration: none;position: absolute; top: -3px;right: -1px; letter-spacing: -1px;color: #FFF; background-color:rgb(41 221 199 / 80%);border-radius: 5px;}
+       .v_side_icons a.vsicon em.circle_check{position: absolute; top: 5px;right: 0px; color: #FFFFFF;}
+
+       .v_bottom_nav{position:fixed;bottom:-1px; height: auto;background-position: center bottom;padding-top: 18px;background-repeat: no-repeat}
+       .v_bottom_nav ul{margin: 0; padding: 0;overflow: hidden;display: flex; flex-direction: row; align-items: center; text-align: center; flex-wrap: nowrap;justify-content: space-between;}
+       .v_bottom_nav ul li {display: block;width: 20%; }
+       .v_bottom_nav ul li a.vsicon{color: #ffffff;display: block; height: 44px; padding-top: 8px;}
+       .v_bottom_nav ul li.mcircle a.vsicon{background-color:transparent !important;}
+       .v_bottom_nav ul li.mcircle em.uk-icon{position: absolute;top:4px; left: 50%; margin-left: -20px;color: #ffffff; padding: 10px;box-sizing: border-box; border-radius: 100%;} .st0{background-color: aqua;}
+       .v_bottom_nav .center_icon{position: relative; width: 100%;text-align: center;}
+       .v_bottom_nav .center_icon em{position: absolute;top:0;left: 50%;  margin-left: -21px;color: #ffffff; padding: 10px;border-radius: 100%;}
+       .v_bottom_nav{background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" width="800px"	 height="60px" viewBox="0 0 800 60"><g><path class="st0" d="M580,15.37v-0.07H427.53v0.07v6.98c0,14.66-12,26.66-26.66,26.66h-1.55c-14.66,0-26.66-12-26.66-26.66v-6.98v-0.07H220v0.07H0v44h220h360h220v-44H580z"/><path class="st0" d="M400,44.55c12.3,0,22.27-9.97,22.27-22.27c0-2.41-0.39-4.73-1.1-6.91C418.27,6.45,409.89,0,400,0s-18.27,6.45-21.18,15.37c-0.71,2.18-1.1,4.5-1.1,6.91C377.73,34.58,387.7,44.55,400,44.55z"/></g></svg>');}
+       .v_contents{position: fixed;bottom:8vh;left: 16px; width: calc(100% - 80px);}
+       .v_contents ul{margin: 0;padding-left: 0; width: 100%;}
+       .v_contents ul li{position: relative;}
+       .v_contents ul li.v_con_info{display: flex; justify-content: flex-start; flex-direction: row; flex-wrap: nowrap;align-items: center;}
+       .v_contents .v_button{background-color:#ffffff; color: #151515; border-radius: 20px;padding: 5px 15px;}
+        .v_contents .v_button.bt_subscribe{background-color:rgb(0 0 0 / 30%); color: #b3b3b3;}
+       .v_contents .v_img{width: 46px; height: 46px;margin-right: 10px;}
+       .v_contents .v_img img{width: 46px; height: 46px; border-radius: 100%;}
+       .v_contents .v_grup a{font-size: 16px;font-weight: 700; margin-right: 10px; color: #FFF; text-decoration: none;}
+       .v_contents .v_con_tit{color: #FFF; text-shadow: 1px 1px 1px rgb(0 0 0 / 20%);line-height: 1.4;margin-top: 5px;}
+       .v_contents .v_con_tit span{color: #cfe5fc !important;}
+       .v_contents .v_con_name{color:#FFF;font-weight: 700;padding-top: 2px;}
+      

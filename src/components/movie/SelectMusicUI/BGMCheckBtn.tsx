@@ -5,19 +5,20 @@ import Svg, { Polyline } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 
 const CheckIcon = () => (
-    <Svg width="30" height="30" viewBox="0 0 20 20">
-        <Polyline fill="none" stroke="#ffffff" strokeWidth="1.1" points="4,10 8,15 17,4" />
+    <Svg width="20" height="20" viewBox="0 0 20 20">
+        <Polyline fill="none" stroke="#202020" strokeWidth="1.1" points="4,10 8,15 17,4" />
     </Svg>
 );
 
 const styles = StyleSheet.create({
     vRecCheck: {
-        backgroundColor: 'rgb(131, 201, 238)',
-        color: '#ffffff',
+        backgroundColor: 'rgba(148, 148, 148, 0)',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
+        borderColor: '#202020',
+        borderWidth: 1,
         borderRadius: 30, // React Native에서는 퍼센트를 사용할 수 없기 때문에, 100%는 width/height의 절반으로 표현됩니다.
     },
     vRecCheckOn: {

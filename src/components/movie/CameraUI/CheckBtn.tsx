@@ -5,15 +5,16 @@ import Svg, { Polyline } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 
 const CheckIcon = () => (
-    <Svg width="30" height="30" viewBox="0 0 20 20">
-        <Polyline fill="none" stroke="#ffffff" strokeWidth="1.6" points="4,10 8,15 17,4" />
+    <Svg width="20" height="20" viewBox="0 0 20 20">
+        <Polyline fill="none" stroke="#202020" strokeWidth="1.6" points="4,10 8,15 17,4" />
     </Svg>
 );
 
 const styles = StyleSheet.create({
     vCheck: {
-        backgroundColor: 'rgba(17, 30, 43, 0.537)',
-        color: '#ffffff',
+        backgroundColor: 'rgba(17, 30, 43, 0)',
+        borderWidth: 1.5,
+        borderColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
         width: 40,

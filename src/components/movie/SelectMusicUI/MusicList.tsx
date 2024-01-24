@@ -4,6 +4,10 @@ import BGMCheckBtn from "./BGMCheckBtn";
 import Sound from "react-native-sound";
 import ModalUI from "../ModalUI";
 import { useCameraUI } from "../../../../android/app/src/contexts/CameraUIContext";
+import GenreSelect from "./GenreSelect";
+
+
+
 
 const MusicList = () => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -105,6 +109,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "#ccc",
         padding: 10,
+        marginHorizontal: 10,
     },
     listItemText: {
         fontSize: 18,

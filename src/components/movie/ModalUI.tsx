@@ -52,20 +52,14 @@ const ModalUI = ({ isModalVisible, setModalVisible, isModalName, }) => {
 
 
             {isModalRendered && (
-                <Animated.View style={[styles.backModal, { opacity: fadeAni }]} />
+                <Animated.View style={[{ opacity: fadeAni }]} />
             )}
         </>
     );
 };
 
 const styles = StyleSheet.create({
-    backModal: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0,0,0,.4)',
-        justifyContent: 'flex-end',
-    },
+
 });
 
 export default ModalUI;
