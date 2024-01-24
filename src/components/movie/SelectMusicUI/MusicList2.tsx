@@ -26,7 +26,7 @@ const MusicList2 = () => {
     const DATA = [
         {
             id: '1',
-            name: "BGM",
+            name: "나를 잊지 말아요",
             title: '나를 잊지 말아요',
             subtitle: '바이브',
             time: '2:50',
@@ -35,7 +35,7 @@ const MusicList2 = () => {
         },
         {
             id: '2',
-            name: "Perfect girl",
+            name: "남자를 몰라",
             title: '남자를 몰라',
             subtitle: '버즈',
             time: '3:10',

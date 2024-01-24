@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, TouchableOpacity, Text, View, Alert } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, TouchableOpacity, Text, View, Animated } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
 import { useNavigation } from '@react-navigation/native';
-
 
 const MusicIcon = () => (
     <Svg width="22" height="23" viewBox="0 0 22 23" stroke="none" fill="#ffffff" style={{
@@ -13,7 +12,58 @@ const MusicIcon = () => (
     </Svg>
 );
 
+const SoundAddBtn = () => {
+    const { isBGM, isSoundName, isRecording, setIsBGM } = useCameraUI();
+    const navigation = useNavigation();
+    const moveAnim = useRef(new Animated.Value(0)).current;
 
+    useEffect(() => {
+        if (isSoundName.length > 6) {
+            const animation = Animated.loop(
+                Animated.timing(moveAnim, {
+                    toValue: -100, // 조절하여 애니메이션 범위를 설정하세요.
+                    duration: 8000, // 애니메이션 속도
+                    useNativeDriver: true,
+                })
+            );
+
+            animation.start();
+            return () => animation.stop();
+        }
+    }, [isSoundName]);
+
+    const AddBGM = () => {
+        if (isBGM) {
+            setIsBGM(false);
+        } else {
+            navigation.navigate('SelectMusicUI')
+        }
+    };
+
+    return (
+        <TouchableOpacity style={[styles.soundAdd, {
+            position: 'absolute',
+            top: 35,
+            alignSelf: 'center',
+            pointerEvents: isRecording ? 'none' : 'auto',
+            overflow: 'hidden',
+        }]}
+            onPress={AddBGM}>
+            <MusicIcon />
+            <View style={styles.textContainer}>
+                <Animated.Text
+                    style={[styles.text, {
+                        transform: [{ translateX: moveAnim }]
+                    }]}
+                    numberOfLines={1} // 한 줄만 표시
+                    ellipsizeMode='clip'
+                >
+                    {isBGM ? isSoundName : '사운드 추가'}
+                </Animated.Text>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 const styles = StyleSheet.create({
     soundAdd: {
@@ -26,45 +76,14 @@ const styles = StyleSheet.create({
         width: 130,
         height: 40,
     },
+    textContainer: {
+        overflow: 'hidden', // 넘치는 텍스트 숨김
+        width: 100, // 텍스트 컨테이너의 너비를 조절하여 텍스트가 잘리는 지점 설정
+    },
     text: {
         color: '#ffffff',
-        fontSize: 13, // 1.2rem을 약 18로 변환, 실제 표시 크기는 디바이스에 따라 다를 수 있음
+        fontSize: 13,
     },
 });
-
-
-
-const SoundAddBtn = () => {
-
-    const { isBGM, setIsBGM, isRecording, setIsRecording, iSound, isSoundName } = useCameraUI();
-    const navigation = useNavigation();
-
-
-    const AddBGM = () => {
-        if (isBGM) {
-            setIsBGM(false);
-        } else {
-            navigation.navigate('SelectMusicUI')
-            //setIsBGM(true);
-        }
-    }
-    return (
-        <TouchableOpacity style={[styles.soundAdd, {
-            position: 'absolute',
-            top: 35,
-            alignSelf: 'center',
-            pointerEvents: isRecording ? 'none' : 'auto'
-        }]}
-            onPress={AddBGM}>
-            <MusicIcon />
-            {isBGM ? (
-                <Text style={styles.text}>{isSoundName}</Text>
-            ) : (
-                <Text style={styles.text}>사운드 추가</Text>
-            )}
-
-        </TouchableOpacity>
-    );
-};
 
 export default SoundAddBtn;

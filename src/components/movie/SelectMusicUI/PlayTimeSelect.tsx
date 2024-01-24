@@ -52,7 +52,6 @@ const PlayTimeSelect: React.FC<Props> = ({ isModalVisible }) => {
                 }}>
                     <Text style={{ color: '#000000', fontSize: 23, alignSelf: 'center', bottom: 30, right: 10, }}>🎵 {isSoundName}</Text>
                     <AudioWave />
-                    <SoundPlayBar />
                 </View>
             </View>
         </View>
