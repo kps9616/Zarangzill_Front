@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 
 const AudioWave = () => {
     const { isTimer, isSoundTime, iSound, isPlayTimeBGM, setIsPlayTimeBGM } = useCameraUI();

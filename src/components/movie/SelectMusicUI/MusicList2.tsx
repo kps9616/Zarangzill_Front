@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, Alert } from
 import { Circle, Polygon, Svg } from 'react-native-svg';
 import TogglePlayBtn from './TogglePlayBtn';
 import Sound from 'react-native-sound';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 import ModalUI from '../ModalUI';
 
 const MusicList2 = () => {

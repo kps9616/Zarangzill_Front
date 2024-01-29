@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import AudioWave from "./AudioWave";
 import CheckBtn from "../CameraUI/CheckBtn";
-import { useCameraUI } from "../../../../android/app/src/contexts/CameraUIContext";
+import { useCameraUI } from "../../../contexts/CameraUIContext";
 import Sound from "react-native-sound";
 import { useNavigation } from '@react-navigation/native';
 import SoundPlayBar from "./SoundPlayBar";

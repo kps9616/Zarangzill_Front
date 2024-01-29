@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 
 const SelfIcon = () => (
     <Svg width="37" height="32" viewBox="0 0 40 34" fill="#ffffffa6">

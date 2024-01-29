@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import Svg, { Path } from "react-native-svg";
 import AppContext from './AppContext';
-import { CameraUIProvider } from "./android/app/src/contexts/CameraUIContext";
+import { CameraUIProvider } from "./src/contexts/CameraUIContext";
 import { Platform, SafeAreaView, View } from 'react-native';
 
 const Container = Platform.OS === 'ios' ? SafeAreaView : View;

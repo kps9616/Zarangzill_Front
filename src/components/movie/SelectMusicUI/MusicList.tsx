@@ -3,7 +3,7 @@ import { View, FlatList, TouchableOpacity, StyleSheet, Text, Alert, } from "reac
 import BGMCheckBtn from "./BGMCheckBtn";
 import Sound from "react-native-sound";
 import ModalUI from "../ModalUI";
-import { useCameraUI } from "../../../../android/app/src/contexts/CameraUIContext";
+import { useCameraUI } from "../../../contexts/CameraUIContext";
 import GenreSelect from "./GenreSelect";
 
 

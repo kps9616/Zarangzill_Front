@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Animated } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 import { useNavigation } from '@react-navigation/native';
 
 const MusicIcon = () => (

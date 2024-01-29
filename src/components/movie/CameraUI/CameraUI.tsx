@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 import { ActivityIndicator, StyleSheet, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { CameraUIProvider, useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext'
+import { CameraUIProvider, useCameraUI } from '../../../contexts/CameraUIContext'
 import RecBtn from './RecBtn';
 import RecFnc from './RecFnc';
 import DeleteBtn from './DeleteBtn';

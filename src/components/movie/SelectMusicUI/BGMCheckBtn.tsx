@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 import Svg, { Polyline } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 

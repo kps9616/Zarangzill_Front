@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, TouchableOpacity, StyleSheet, View } from 'react-native';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 
 const styles = StyleSheet.create({
   recBtnContainer: {

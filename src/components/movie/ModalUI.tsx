@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, FlatList, TouchableOpacity, StyleSheet, Text, Modal, Alert, Animated } from "react-native";
 import PlayTimeSelect from "./SelectMusicUI/PlayTimeSelect";
-import { useCameraUI } from "../../../android/app/src/contexts/CameraUIContext";
+import { useCameraUI } from "../../contexts/CameraUIContext";
 
 const ModalUI = ({ isModalVisible, setModalVisible, isModalName, }) => {
     const [isModalRendered, setModalRendered] = useState(false);

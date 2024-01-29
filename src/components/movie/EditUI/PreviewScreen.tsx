@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useCameraUI } from '../../../../android/app/src/contexts/CameraUIContext';
+import { useCameraUI } from '../../../contexts/CameraUIContext';
 import { Alert, View, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import Video from 'react-native-video';
 import PreviewDelBtn from './PreviewDelBtn';
