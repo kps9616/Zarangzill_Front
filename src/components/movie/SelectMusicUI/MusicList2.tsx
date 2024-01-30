@@ -17,7 +17,7 @@ const MusicList2 = () => {
     useEffect(() => {
         return () => {
             if (sound) {
-                sound.release();
+                sound.stop();
             }
         };
     }, [sound]); // 사운드 언마운트 시 릴리즈
