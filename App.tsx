@@ -11,16 +11,28 @@ const Container = Platform.OS === 'ios' ? SafeAreaView : View;
 const Stack = createNativeStackNavigator();
 export default function App() {
 
-  const [stringValue, setStringValue] = useState('http://1.226.83.35:8090');
+  const [stringValue, setStringValue] = useState('http://1.226.83.35:9090');
+  const [uploadFilePath, setUploadFilePath] = useState("");
+  const [uploadThumbnail, setUploadThumbnail] = useState("");
 
   const setValue = (string: React.SetStateAction<string>) => {
     setStringValue(string)
   }
 
+  const setFilePath = (string: React.SetStateAction<string>) => {
+    setUploadFilePath(string)
+  }
+  const setThumbnailPath = (string: React.SetStateAction<string>) => {
+    setUploadThumbnail(string)
+  }
 
   const values = {
     stringValue: stringValue,
-    setValue
+    uploadThumbnail: uploadThumbnail,
+    uploadFilePath: uploadFilePath,
+    setValue,
+    setFilePath,
+    setThumbnailPath
   }
 
   return (

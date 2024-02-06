@@ -4,6 +4,7 @@ import CameraUI from "./CameraUI/CameraUI";
 import { createStackNavigator } from "@react-navigation/stack";
 import EditUI from "./EditUI/EditUI";
 import SelectMusicUI from "./SelectMusicUI/SelectMusicUI";
+import UploadUI from "./UploadUI";
 
 const MovieStack = createStackNavigator();
 
@@ -12,7 +13,8 @@ function MovieViewStack() {
         <MovieStack.Navigator initialRouteName="CameraUI">
             <MovieStack.Screen name="CameraUI" component={CameraUI} options={{ headerShown: false, }} />
             <MovieStack.Screen name="EditUI" component={EditUI} options={{ headerShown: false, }} />
-            <MovieStack.Screen name="SelectMusicUI" component={SelectMusicUI} options={{ headerShown: false, }} />
+            <MovieStack.Screen name="UploadUI" component={UploadUI} options={{ headerShown: false, }} />
+            {/*<MovieStack.Screen name="SelectMusicUI" component={SelectMusicUI} options={{ headerShown: false, }} />*/}
         </MovieStack.Navigator>
     );
 }
