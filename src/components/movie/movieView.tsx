@@ -14,7 +14,7 @@ function MovieViewStack() {
             <MovieStack.Screen name="CameraUI" component={CameraUI} options={{ headerShown: false, }} />
             <MovieStack.Screen name="EditUI" component={EditUI} options={{ headerShown: false, }} />
             <MovieStack.Screen name="UploadUI" component={UploadUI} options={{ headerShown: false, }} />
-            {/*<MovieStack.Screen name="SelectMusicUI" component={SelectMusicUI} options={{ headerShown: false, }} />*/}
+            <MovieStack.Screen name="SelectMusicUI" component={SelectMusicUI} options={{ headerShown: false, }} />
         </MovieStack.Navigator>
     );
 }
