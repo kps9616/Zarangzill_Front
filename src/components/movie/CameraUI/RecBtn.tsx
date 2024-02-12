@@ -74,7 +74,11 @@ const RecBtn = () => {
 
   return (
     <TouchableOpacity
-      onPress={() => setIsRecording(!isRecording)}
+      onPress={() => {
+        if (!isRecording) {
+          setIsRecording(!isRecording);
+        }
+      }}
       style={{
         position: 'absolute',
         bottom: 60,
@@ -82,6 +86,7 @@ const RecBtn = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}
+      disabled={isRecording}
     >
       <Animated.View style={[styles.recBtn2, animatedStyle]}>
         <Animated.View style={[styles.recBtnContainer, scaleStyle]} />

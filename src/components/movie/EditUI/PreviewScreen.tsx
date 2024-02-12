@@ -1,20 +1,48 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useCameraUI } from '../../../contexts/CameraUIContext';
-import {Alert, View, TouchableOpacity, StyleSheet, Button, SafeAreaView, Dimensions} from 'react-native';
+import { Alert, View, TouchableOpacity, StyleSheet, Button, SafeAreaView, Dimensions } from 'react-native';
 import Video from 'react-native-video';
 import PreviewDelBtn from './PreviewDelBtn';
 import { VESDK } from "react-native-videoeditorsdk";
-import {CameraRoll,useCameraRoll} from '@react-native-camera-roll/camera-roll';
-import {uploadFile} from "../../../apis/video/video.api";
+import { CameraRoll, useCameraRoll } from '@react-native-camera-roll/camera-roll';
+import { uploadFile } from "../../../apis/video/video.api";
 import AppContext from "../../../../AppContext";
 import WebView from "react-native-webview";
-import {useNavigation} from "@react-navigation/native"; // VESDK import
+import { useNavigation } from "@react-navigation/native"; // VESDK import
 
 const PreviewScreen = () => {
-    const { videoPath, isPreview } = useCameraUI(); // 두 상태를 한 번에 가져오기
+    const { videoPath, isPreview, isBGM, iSound, isPlayTimeBGM, isTimer } = useCameraUI();
     const [photos, getPhotos, save] = useCameraRoll();
     const myContext = useContext(AppContext);
     const navigation = useNavigation();
+
+    useEffect(() => {
+        const focusListener = navigation.addListener('focus', () => {
+            if (isBGM) {
+                iSound?.setCurrentTime(isPlayTimeBGM);
+                iSound?.play();
+                const timer = setTimeout(() => {
+                    iSound?.stop();
+                }, isTimer * 1000);
+
+                // 클린업 함수에서 타이머를 취소
+                return () => clearTimeout(timer);
+            }
+        });
+
+        const blurListener = navigation.addListener('blur', () => {
+            if (isBGM) {
+                iSound?.stop();
+            }
+        });
+
+        return () => {
+            // 이벤트 리스너 정리
+            navigation.removeListener('focus', focusListener);
+            navigation.removeListener('blur', blurListener);
+        };
+
+    }, [navigation]);
 
     // 비디오를 편집기로 불러오는 함수
     const openVideoEditor = async () => {
@@ -25,9 +53,9 @@ const PreviewScreen = () => {
 
             await save(result?.video as string);
             await uploadFile({
-                file:result?.video,
-                userId:"1"
-            },'').then((data) => {
+                file: result?.video,
+                userId: "1"
+            }, '').then((data) => {
                 const returnData = data.data;
                 myContext.setFilePath(returnData.filePath);
                 myContext.setThumbnailPath(returnData.thumbnail);
@@ -49,8 +77,10 @@ const PreviewScreen = () => {
                 <Video
                     source={{ uri: videoPath }}
                     style={StyleSheet.absoluteFill}
-                    controls={true}
+                    controls={false}
                     resizeMode="cover"
+                    repeat={false}
+                    muted={isBGM}
                 />
                 <PreviewDelBtn />
                 <Button title="Edit Video" onPress={openVideoEditor} />

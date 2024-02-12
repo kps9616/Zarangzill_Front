@@ -22,10 +22,13 @@ const CameraUI = () => {
   const cameraRef = useRef(null);
   const [isActive, setIsActive] = useState(true);
   const navigation = useNavigation();
+  const [cameraKey, setCameraKey] = useState(0); // 추가: 컴포넌트 재마운트를 위한 key 상태
+
 
   useEffect(() => {
     const focusListener = navigation.addListener('focus', () => {
       setIsActive(true);
+      setCameraKey(prevKey => prevKey + 1); // 카메라 컴포넌트를 재마운트하기 위해 key 업데이트
     });
 
     const blurListener = navigation.addListener('blur', () => {
@@ -39,9 +42,6 @@ const CameraUI = () => {
     };
   }, [navigation]);
 
-  /*useEffect(() => {
-    Alert.alert(`지금의 상태는 ${isSoundTime} 입니다.`);
-  }, [isRecording,]);*/
 
   useEffect(() => {
     const checkPermission = async () => {
@@ -53,14 +53,10 @@ const CameraUI = () => {
 
   if (device == null) return <ActivityIndicator />;
 
-  const goSelectUI = () => {
-    navigation.navigate('SelectMusicUI');
-  }
-
 
   return (
     <View style={{ flex: 1 }}>
-      <Camera ref={cameraRef} style={StyleSheet.absoluteFill} device={device} isActive={isActive} video={true} audio={true} zoom={device.neutralZoom} />
+      <Camera key={cameraKey} ref={cameraRef} style={StyleSheet.absoluteFill} device={device} isActive={isActive} video={true} audio={true} zoom={device.neutralZoom} />
       <RecBtn />
       <RecFnc cameraRef={cameraRef} />
       {!isRecording && <DeleteBtn />}

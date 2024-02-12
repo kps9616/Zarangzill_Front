@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, } from 'react';
+import React, { createContext, useContext, useEffect, useState, } from 'react';
+import { AppState } from 'react-native';
 import Sound = require('react-native-sound');
 // 상태의 타입을 정의합니다.
 interface CameraUIState {
@@ -68,6 +69,27 @@ export const CameraUIProvider: React.FC = ({ children }) => {
   const [isPlayTimeBGM, setIsPlayTimeBGM] = useState<number>(0);
   const [iSound, setiSound] = useState<Sound | null>(null);
   const [isSoundTime, setIsSoundTime] = useState<number>(0);
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState) => {
+      if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+        // 앱이 백그라운드로 전환될 때
+        if (iSound) {
+          iSound.stop(); // 현재 재생 중인 사운드 정지
+        }
+      }
+      setAppState(nextAppState);
+    };
+
+    // AppState 변경 감지를 위한 구독 생성
+    const appStateSubscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      // 구독 취소
+      appStateSubscription.remove();
+    };
+  }, [iSound, appState]);
 
   const toggleFrontCamera = () => {
     setIsFrontCamera(prev => !prev);
