@@ -48,7 +48,7 @@ const PreviewDelBtn = () => {
             style={[styles.vDel, {
                 position: 'absolute',
                 left: 14,
-                top: 35,
+                top: 20,
             }]}
             onPress={PreviewDelFnc}>
             <DeleteIcon />

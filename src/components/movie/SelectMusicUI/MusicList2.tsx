@@ -20,7 +20,7 @@ const MusicList2 = () => {
                 sound.stop();
             }
         };
-    }, [sound]); // 사운드 언마운트 시 릴리즈
+    }, [sound]);
 
 
     const DATA = [
@@ -50,22 +50,35 @@ const MusicList2 = () => {
         setiSound(sound);
     }
 
+    const togglePlayPause = (item) => {
+        if (sound && selectedId === item.id) {
+            sound.stop(() => {
+                sound.release();
+                setSound(null);
+                setSelectedId(null);
+                setIsPlaying(false);
+            });
+            return;
+        } else {
+            playSound(item);
+        }
+    };
+
+
+    const restartOrPlaySound = (item) => {
+        if (sound && selectedId === item.id) {
+            sound.setCurrentTime(0); // 재생 위치를 0으로 설정
+            sound.play(); // 음악을 다시 재생
+        } else {
+            playSound(item);
+        }
+    };
+
+
     const playSound = (item) => {
         if (sound) {
-            if (selectedId === item.id) {
-                sound.stop(() => {
-                    sound.release();
-                    setSound(null);
-                    setSelectedId(null);
-                    setIsPlaying(false);
-                });
-                return;
-            } else {
-                sound.release();
-            }
+            sound.release(); // 이전 사운드 해제
         }
-
-        setSelectedId(item.id);
 
         const newSound = new Sound(item.src, null, (error) => {
             if (error) {
@@ -88,23 +101,25 @@ const MusicList2 = () => {
         });
 
         setSound(newSound);
+    };
 
-    }
 
 
     const Item = ({ id, name, title, subtitle, time, avatar, src }) => (
         <View style={styles.item}>
             <Image source={avatar} style={styles.avatar} />
             <View style={styles.messageContainer}>
-                <Text style={styles.title} onPress={() => {
-                    playSound({ id, name, title, subtitle, time, avatar, src });
-                    onPlayTime();
-                }}>{title}</Text>
+                <Text style={styles.title}
+                    onPress={() => {
+                        restartOrPlaySound({ id, name, title, subtitle, time, avatar, src });
+                        onPlayTime();
+                    }}>{title}</Text>
                 <Text style={styles.subtitle}>{subtitle}</Text>
             </View>
             <View style={styles.timeContainer}>
                 <Text style={styles.time}>{time}</Text>
-                <TogglePlayBtn isPlaying={selectedId === id} onPress={() => { playSound({ id, name, title, subtitle, time, avatar, src }); }} />
+                <TogglePlayBtn isPlaying={selectedId === id}
+                    onPress={() => togglePlayPause({ id, name, title, subtitle, time, avatar, src })} />
             </View>
         </View>
     );

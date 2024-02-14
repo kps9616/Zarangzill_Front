@@ -9,6 +9,10 @@ import { uploadFile } from "../../../apis/video/video.api";
 import AppContext from "../../../../AppContext";
 import WebView from "react-native-webview";
 import { useNavigation } from "@react-navigation/native"; // VESDK import
+import EditBtn from './EditBtn';
+import UploadBtn from '../CameraUI/UploadBtn';
+import PreviewUploadBtn from './PreviewUploadBtn';
+import { Text } from 'react-native';
 
 const PreviewScreen = () => {
     const { videoPath, isPreview, isBGM, iSound, isPlayTimeBGM, isTimer } = useCameraUI();
@@ -83,7 +87,13 @@ const PreviewScreen = () => {
                     muted={isBGM}
                 />
                 <PreviewDelBtn />
-                <Button title="Edit Video" onPress={openVideoEditor} />
+                <TouchableOpacity onPress={openVideoEditor} style={[styles.editBtnBack, { position: 'absolute', right: 14, top: 20 }]} >
+                    <EditBtn />
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.uploadBtnBack, { flexDirection: 'row', position: 'absolute', right: 14, bottom: 20 }]}>
+                    <Text style={[styles.uploadText, { fontWeight: 'bold', marginRight: 5, }]}>업로드</Text>
+                    <PreviewUploadBtn />
+                </TouchableOpacity>
             </View>
         );
     }
@@ -104,6 +114,32 @@ const styles = StyleSheet.create({
         width: deviceWidth,
         height: deviceHeight,
     },
+
+    editBtnBack: {
+        backgroundColor: 'rgba(21, 21, 21, 0.5)',
+        color: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 50,
+        height: 50,
+        borderRadius: 30, // 100%는 width/height의 절반으로 표현됩니다.
+    },
+
+    uploadBtnBack: {
+        backgroundColor: 'rgb(80, 162, 255)',
+        color: '#ffffff',
+        alignItems: 'center', // 세로 축 중앙 정렬
+        justifyContent: 'center', // 가로 축 중앙 정렬
+        flexDirection: 'row', // 자식 요소들을 가로 방향으로 배열
+        width: 90,
+        height: 44,
+        borderRadius: 30,
+    },
+
+    uploadText: {
+        color: '#ffffff',
+        fontSize: 12,
+    }
 
 });
 
