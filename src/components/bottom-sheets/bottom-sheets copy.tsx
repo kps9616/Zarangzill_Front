@@ -2,37 +2,27 @@ import React, { useState } from 'react';
 import "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import MovieView from "../movie/movieView";
 import SharedStack from "../app-component/share-sheets";
 import Svg, { Path } from "react-native-svg";
 import "react-native-svg";
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 const Tab = createBottomTabNavigator();
-const windowWidth = Dimensions.get('window').width; // 디바이스의 너비를 가져옵니다.
 
-const CustomTabBarBackground = () => {
-    return (
-        <Svg height="60" width={windowWidth.toString()} viewBox="0 0 800 60" style={styles.svgBackground}>
-            <Path d="M580,15.37v-0.07H427.53v0.07v6.98c0,14.66-12,26.66-26.66,26.66h-1.55c-14.66,0-26.66-12-26.66-26.66v-6.98v-0.07H220v0.07H0v44h220h360h220v-44H580z" fill="#476314" />
-            <Path d="M400,44.55c12.3,0,22.27-9.97,22.27-22.27c0-2.41-0.39-4.73-1.1-6.91C418.27,6.45,409.89,0,400,0s-18.27,6.45-21.18,15.37c-0.71,2.18-1.1,4.5-1.1,6.91C377.73,34.58,387.7,44.55,400,44.55z" fill="#9789ff" />
-        </Svg>
-    );
-};
 function CustomTabBar({ state, descriptors, navigation }) {
-
     return (
-        <View style={styles.tabBarContainer}>
-            <CustomTabBarBackground />
-            <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around' }}>
+        <View style={{ position: 'absolute', bottom: 0, width: '100%', }}>
+            <Svg height="60" width="100%" viewBox="0 0 800 60">
+                <Path d="M580,15.37v-0.07H427.53v0.07v6.98c0,14.66-12,26.66-26.66,26.66h-1.55c-14.66,0-26.66-12-26.66-26.66v-6.98v-0.07H220v0.07H0v44h220h360h220v-44H580z" fill="#000" />
+                <Path d="M400,44.55c12.3,0,22.27-9.97,22.27-22.27c0-2.41-0.39-4.73-1.1-6.91C418.27,6.45,409.89,0,400,0s-18.27,6.45-21.18,15.37c-0.71,2.18-1.1,4.5-1.1,6.91C377.73,34.58,387.7,44.55,400,44.55z" fill="#000" />
+            </Svg>
+            <View style={{ flexDirection: 'row', position: 'absolute', bottom: 10, width: '100%', justifyContent: 'space-around' }}>
                 {state.routes.map((route, index) => {
                     const { options } = descriptors[route.key];
-                    const label =
-                        options.tabBarLabel !== undefined
-                            ? options.tabBarLabel
-                            : options.title !== undefined
-                                ? options.title
-                                : route.name;
+                    const label = options.tabBarLabel !== undefined ? options.tabBarLabel : options.title !== undefined ? options.title : route.name;
 
                     const isFocused = state.index === index;
 
@@ -49,16 +39,8 @@ function CustomTabBar({ state, descriptors, navigation }) {
                     };
 
                     return (
-                        <TouchableOpacity
-                            key={label}
-                            onPress={onPress}
-                            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-                        >
-                            {/* 여기에서 아이콘을 렌더링하고 있습니다. */}
-                            {options.tabBarIcon({ focused: isFocused, color: isFocused ? '#673ab7' : '#222', size: 24 })}
-                            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-                                {label}
-                            </Text>
+                        <TouchableOpacity key={label} onPress={onPress} style={{ flex: 1, alignItems: 'center' }}>
+                            <Icon name={options.tabBarIconName} size={24} color={isFocused ? '#673ab7' : '#222'} />
                         </TouchableOpacity>
                     );
                 })}
@@ -67,14 +49,12 @@ function CustomTabBar({ state, descriptors, navigation }) {
     );
 }
 
-
 function BottomTabNavigationApp() {
     return (
-        <Tab.Navigator initialRouteName="ShotForm"
-            screenOptions={{
-                headerShown: false,
-            }}
-            tabBar={props => <CustomTabBar {...props} />}>
+        <Tab.Navigator initialRouteName="ShotForm" screenOptions={{
+            headerShown: false,
+            tabBarStyle: styles.tabBar,
+        }}>
             <Tab.Screen
                 name="Shotform"
                 options={{
@@ -159,12 +139,6 @@ function BottomTabNavigationApp() {
 
 
 const styles = StyleSheet.create({
-    tabBarContainer: {
-        position: 'absolute', // 탭 바 컨테이너를 하단에 고정
-        bottom: 0,
-        left: 0,
-        right: 0,
-    },
     tabBar: {
         backgroundColor: 'black', // 배경 색상을 검은색으로 설정
         position: 'absolute',
@@ -179,24 +153,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    svgBackground: {
-        position: 'absolute', // SVG 배경을 하단에 고정
-        bottom: 0,
-        left: 0,
-        width: '100%',
-        height: 60,
-        backgroundColor: '#7d2c2c',
-    },
-    middleButton: {
-        // 중앙 버튼의 높이와 marginBottom을 조정합니다.
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        backgroundColor: '#000',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 30, // 버튼이 탭 바에서 더 돌출되게 하려면 이 값을 증가시킵니다.
     },
 });
 

@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Alert, Text, TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 const UploadIcon = () => (
@@ -9,8 +10,10 @@ const UploadIcon = () => (
 );
 
 const UploadBtn = () => {
+
+    const navigation = useNavigation();
     const onPress = () => {
-        // 버튼이 클릭되었을 때의 동작을 여기에 작성
+        navigation.navigate('Gallery');
     };
 
     return (

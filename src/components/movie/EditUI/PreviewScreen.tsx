@@ -7,10 +7,7 @@ import { VESDK } from "react-native-videoeditorsdk";
 import { CameraRoll, useCameraRoll } from '@react-native-camera-roll/camera-roll';
 import { uploadFile } from "../../../apis/video/video.api";
 import AppContext from "../../../../AppContext";
-import WebView from "react-native-webview";
 import { useNavigation } from "@react-navigation/native"; // VESDK import
-import EditBtn from './EditBtn';
-import UploadBtn from '../CameraUI/UploadBtn';
 import PreviewUploadBtn from './PreviewUploadBtn';
 import { Text } from 'react-native';
 
@@ -87,11 +84,8 @@ const PreviewScreen = () => {
                     muted={isBGM}
                 />
                 <PreviewDelBtn />
-                <TouchableOpacity onPress={openVideoEditor} style={[styles.editBtnBack, { position: 'absolute', right: 14, top: 20 }]} >
-                    <EditBtn />
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.uploadBtnBack, { flexDirection: 'row', position: 'absolute', right: 14, bottom: 20 }]}>
-                    <Text style={[styles.uploadText, { fontWeight: 'bold', marginRight: 5, }]}>업로드</Text>
+                <TouchableOpacity onPress={openVideoEditor} style={[styles.uploadBtnBack, { flexDirection: 'row', position: 'absolute', right: 14, bottom: 20 }]} >
+                    <Text style={[styles.uploadText, { fontWeight: 'bold', marginRight: 5, }]}>편집</Text>
                     <PreviewUploadBtn />
                 </TouchableOpacity>
             </View>
@@ -131,7 +125,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', // 세로 축 중앙 정렬
         justifyContent: 'center', // 가로 축 중앙 정렬
         flexDirection: 'row', // 자식 요소들을 가로 방향으로 배열
-        width: 90,
+        width: 80,
         height: 44,
         borderRadius: 30,
     },

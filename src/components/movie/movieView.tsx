@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import EditUI from "./EditUI/EditUI";
 import SelectMusicUI from "./SelectMusicUI/SelectMusicUI";
 import UploadUI from "./UploadUI";
+import Gallery from "./GalleryUI/Gallery";
 
 const MovieStack = createStackNavigator();
 
@@ -15,6 +16,7 @@ function MovieViewStack() {
             <MovieStack.Screen name="EditUI" component={EditUI} options={{ headerShown: false, }} />
             <MovieStack.Screen name="UploadUI" component={UploadUI} options={{ headerShown: false, }} />
             <MovieStack.Screen name="SelectMusicUI" component={SelectMusicUI} options={{ headerShown: false, }} />
+            <MovieStack.Screen name="Gallery" component={Gallery} options={{ headerShown: false, }} />
         </MovieStack.Navigator>
     );
 }
