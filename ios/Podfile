@@ -60,3 +60,10 @@ target 'ZarangRNapp' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+permissions_path = '../node_modules/react-native-permissions/ios'
+
+pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
+pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
+pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
+pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"

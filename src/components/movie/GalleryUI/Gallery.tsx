@@ -21,14 +21,31 @@ const Gallery: React.FC = () => {
     const [isFetchingMore, setIsFetchingMore] = useState<boolean>(false);
 
     const fetchVideos = useCallback(async () => {
-        const res = await CameraRoll.getPhotos({
-            first: 21,
-            assetType: 'Videos',
-        });
-        setVideos(res?.edges);
-        setIsLoading(false);
-        setNextCursor(res.page_info.end_cursor); // 첫 번째 데이터 로드 시 nextCursor를 업데이트
-    }, []);
+        if (!hasPermission) {
+            //Alert.alert("권한 문제", "갤러리 접근 권한이 없습니다.");
+            return;
+        }
+        setIsLoading(true);
+        try {
+            const res = await CameraRoll.getPhotos({
+                first: 21,
+                assetType: 'Videos',
+            });
+            if (res.edges.length > 0) {
+                setVideos(res.edges);
+                setNextCursor(res.page_info.end_cursor);
+                //Alert.alert("로딩 성공", "비디오 데이터가 성공적으로 로드되었습니다.");
+            } else {
+                //Alert.alert("데이터 없음", "로드할 비디오가 더 이상 없습니다.");
+            }
+        } catch (error) {
+            console.error(error);
+            // Alert.alert("로딩 실패", "비디오 데이터 로딩 중 에러가 발생했습니다.");
+        } finally {
+            setIsLoading(false);
+        }
+    }, [hasPermission]);
+
 
 
     const fetchMoreVideos = useCallback(async () => {
@@ -153,22 +170,22 @@ const Gallery: React.FC = () => {
     }, [openSettingsAlert]);
 
     const checkPermission = useCallback(async () => {
+        let permissionStatus = '';
         if (Platform.OS === 'ios') {
             const permission = await Permissions.check(PERMISSIONS.IOS.PHOTO_LIBRARY);
-            if (permission === Permissions.RESULTS.GRANTED ||
-                permission === Permissions.RESULTS.LIMITED) {
+            permissionStatus = permission;
+            if (permission === Permissions.RESULTS.GRANTED || permission === Permissions.RESULTS.LIMITED) {
                 setHasPermission(true);
-                return;
-            }
-            const res = await Permissions.request(PERMISSIONS.IOS.PHOTO_LIBRARY);
-            if (res === Permissions.RESULTS.GRANTED ||
-                res === Permissions.RESULTS.LIMITED) {
-                setHasPermission(true);
-            }
-            if (res === Permissions.RESULTS.BLOCKED) {
-                openSettingsAlert({
-                    title: '설정에서 갤러리 접근 권한을 허용해주세요.',
-                });
+                //Alert.alert("권한 상태", "갤러리 접근 권한이 허용되었습니다.");
+            } else {
+                const res = await Permissions.request(PERMISSIONS.IOS.PHOTO_LIBRARY);
+                permissionStatus = res;
+                if (res === Permissions.RESULTS.GRANTED || res === Permissions.RESULTS.LIMITED) {
+                    setHasPermission(true);
+                    //Alert.alert("권한 상태", "갤러리 접근 권한이 허용되었습니다.");
+                } else {
+                    // Alert.alert("권한 상태", "갤러리 접근 권한이 거부되었습니다.");
+                }
             }
         } else if (Platform.OS === 'android') {
             checkAndroidPermissions();
@@ -178,6 +195,10 @@ const Gallery: React.FC = () => {
     useEffect(() => {
         checkPermission();
     }, [checkPermission]);
+
+    useEffect(() => {
+        checkPermission().then(fetchVideos);
+    }, [checkPermission, fetchVideos]);
 
 
     //편집기 호출 함수

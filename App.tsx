@@ -36,7 +36,7 @@ export default function App() {
   }
 
   return (
-    <Container style={{ flex: 1, backgroundColor: 'white' }}>
+    <Container style={{ flex: 1, backgroundColor: 'black' }}>
       <AppContext.Provider value={values}>
         <NavigationContainer>
 
