@@ -1,6 +1,6 @@
 
 import React, { useContext, useCallback, useEffect, useState } from 'react';
-import { Image, Alert, Linking, Platform, SafeAreaView, Text, View, Animated, Easing, StyleSheet, ViewProps, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, Alert, Linking, Platform, SafeAreaView, Text, View, Animated, Easing, StyleSheet, ViewProps, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import { CameraRoll, PhotoIdentifier, useCameraRoll, } from '@react-native-camera-roll/camera-roll'
 import { FlatList } from 'react-native-gesture-handler';
@@ -27,7 +27,36 @@ const Gallery: React.FC = () => {
         });
         setVideos(res?.edges);
         setIsLoading(false);
+        setNextCursor(res.page_info.end_cursor); // 첫 번째 데이터 로드 시 nextCursor를 업데이트
     }, []);
+
+
+    const fetchMoreVideos = useCallback(async () => {
+        if (isFetchingMore || !nextCursor) {
+            // 이미 데이터를 더 불러오는 중이거나, 더 이상 불러올 데이터가 없으면 아무것도 하지 않습니다.
+            return;
+        }
+        setIsFetchingMore(true); // 데이터를 더 불러오는 상태로 설정
+        try {
+            const res = await CameraRoll.getPhotos({
+                first: 21, // 다음 페이지의 사이즈
+                assetType: 'Videos',
+                after: nextCursor, // 다음 페이지 커서
+            });
+            if (res.edges.length > 0) {
+                setVideos(prevVideos => [...prevVideos, ...res.edges]);
+                setNextCursor(res.page_info.end_cursor);
+                //Alert.alert('데이터 불러오기 시도');
+            }
+        } catch (error) {
+            console.error(error);
+            //Alert.alert('데이터 불러오는 중 에러');
+        } finally {
+            setIsFetchingMore(false); // 데이터 불러오기 완료
+            //Alert.alert('데이터 불러오기 완료');
+        }
+    }, [isFetchingMore, nextCursor]);
+
 
 
     useEffect(() => {
@@ -167,7 +196,12 @@ const Gallery: React.FC = () => {
     return (
         <SafeAreaView>
             <FlatList
-                numColumns={3} // Set the number of columns to 1 for full-width images
+                onEndReached={fetchMoreVideos} // 리스트 끝에 도달했을 때 함수 호출
+                onEndReachedThreshold={0.5} // 리스트 끝에서 50% 남았을 때 함수 호출
+                ListFooterComponent={() => {
+                    return isLoading ? <ActivityIndicator /> : null;
+                }}
+                numColumns={3}
                 data={isLoading ? Array(15).fill('') : videos}
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({ item, index }) => {
@@ -191,14 +225,17 @@ const Gallery: React.FC = () => {
     );
 };
 
-const { width: screenWidth } = Dimensions.get('window'); // Flatlist가 제대로 100프로로 표시되기 위한 선언
-const imageWidth = screenWidth / 3 - 4; // 패딩값 분의 마진값에서 4를 뺍니다.
+const { width: screenWidth } = Dimensions.get('window');
+// 이미지 사이의 마진을 계산할 때, 각 이미지 사이에 2px, 양 끝에 2px 씩을 고려하여 총 4px을 사용
+const totalMarginSpace = 4 * 2; // 각 이미지 사이에 2px, 총 3개의 공간이므로 4를 곱함
+const imageWidth = (screenWidth - totalMarginSpace) / 3; // 전체 너비에서 마진 공간을 빼고 3으로 나눔
+
 
 const styles = StyleSheet.create({
     list: { padding: 16 },
     image: {
         height: imageWidth,
-        width: imageWidth,
+        width: imageWidth - 12,
         borderRadius: 4,
         margin: 2,
     },
