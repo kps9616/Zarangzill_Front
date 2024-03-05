@@ -6,7 +6,7 @@ import AppContext from "../../../AppContext";
 function winnerView() {
     const myContext = useContext(AppContext);
 
-    let sourceUri = myContext.stringValue+"/45-1월우승-진행중.html";
+    let sourceUri = myContext.stringValue+"/monthWinner";
     return(
         <SafeAreaView style={styles.container}>
             <WebView

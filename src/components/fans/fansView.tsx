@@ -5,8 +5,7 @@ import AppContext from "../../../AppContext";
 
 function fansView() {
     const myContext = useContext(AppContext);
-
-    let sourceUri = myContext.stringValue+"/66-1팬.html";
+    let sourceUri = myContext.stringValue+"/fans";
     return(
         <SafeAreaView style={styles.container}>
             <WebView

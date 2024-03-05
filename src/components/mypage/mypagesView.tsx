@@ -5,7 +5,7 @@ import AppContext from "../../../AppContext";
 
 function mypagesView() {
     const myContext = useContext(AppContext);
-    let sourceUri = myContext.stringValue+"/73-1마이페이지.html";
+    let sourceUri = myContext.stringValue+"/mypage/mypageView";
     return(
         <SafeAreaView style={styles.container}>
             <WebView

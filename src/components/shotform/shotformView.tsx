@@ -23,7 +23,7 @@ function shotformView() {
 
     const myContext = useContext(AppContext);
 
-    let sourceUri = myContext.stringValue + "/main.html";
+    let sourceUri = myContext.stringValue + "/main";
     return (
 
         <SafeAreaView style={styles.container}>
